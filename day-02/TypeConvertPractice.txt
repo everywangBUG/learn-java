@@ -1,0 +1,17 @@
+判断是否能够通过编译
+1. short s = 12;
+   s = s - 9; // 编译错误，减9转换成int，把int转换成short报错
+
+2. byte b = 10;
+   b = b + 11; // b转换成int
+   b = (byte)(b + 11); // int强制转换成byte，编译通过
+
+3. char c = 'c';
+   int i = 16;
+   float d = .314F;
+   double result = c + i + d; // 可以通过，表达式转换成double
+
+4. byte b = 16;
+   short s = 14;
+   short t = s + b; // 不能，byte+short类型转成int，int不能转成short
+
