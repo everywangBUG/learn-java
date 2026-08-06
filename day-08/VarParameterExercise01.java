@@ -5,17 +5,18 @@
 
 class VarParameterExercise01 {
     public static void main(String[] args) {
-        System.out.println("");
+        HspMethod hsp = new HspMethod();
+        String res = hsp.showScore("张三", 69, 80, 78, 80, 98);
+        System.out.println(res);
     }
-
 }
 
 class HspMethod {
     public String showScore(String name, double... scores) {
         double sumScore = 0;
-        for (double score = 0; score < scores.length; score++) {
-            sumScore += score;
+        for (int score = 0; score < scores.length; score++) {
+            sumScore += scores[score];
         }
-        return "姓名：" + name + "总分：" + sumScore;
+        return "姓名：" + name + "\t" + "总分：" + sumScore;
     }
 }

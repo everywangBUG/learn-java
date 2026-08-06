@@ -16,7 +16,7 @@ class RandomGenerateArray {
         for (int i = 0; i < arr.length; i++) {
             if (min > arr[i]) {
                 min = arr[i];
-                minIndex = i;
+                minIndex = i;w
             }
             if (max < arr[i]) {
                 max = arr[i];
