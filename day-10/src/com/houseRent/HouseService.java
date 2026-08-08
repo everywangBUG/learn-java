@@ -29,6 +29,15 @@ public class HouseService {
         house.setId(++idCounter);
         return true;
     }
+
+    public House searchHouseById(String id) {
+        for (int i = 0; i < houseList.length; i++) {
+            if (id.equals(String.valueOf(houseList[i].getId()))) {
+                return houseList[i];
+            }
+        }
+        return null;
+    }
     
     public House[] getHouseList() {
         return houseList;

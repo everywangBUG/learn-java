@@ -21,6 +21,30 @@ public class House {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getHouseMaster() {
+        return houseMaster;
+    }
+
+    public String getMonthlyRent() {
+        return monthlyRent;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
     @Override
     public String toString() {
         return  id + "\t\t" + houseMaster + "\t\t" + phone + "\t\t" + address + "\t\t" + monthlyRent + "\t\t" + status;
