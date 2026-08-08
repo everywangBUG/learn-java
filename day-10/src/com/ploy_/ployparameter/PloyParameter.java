@@ -17,6 +17,7 @@ public class PloyParameter {
     public void testWork(Employee e) {
         // 如果是普通员工，调用work方法，如果是经理，调用manage方法
         if (e instanceof Worker) {
+            // 向下转型
             ((Worker) e).work();
         } else if (e instanceof Manager) {
             ((Manager) e).manage();
