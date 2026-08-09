@@ -11,7 +11,7 @@ public class HouseView {
             this.initInterface();
             Scanner sc = new Scanner(System.in);
             int key = sc.nextInt();
-            houseService.setHouseList(1);
+            houseService.setHouseList(2);
             switch(key) {
                 case 1:
                     addHouse();
@@ -20,7 +20,7 @@ public class HouseView {
                     searchHouseInfo();
                     break;
                 case 3:
-                    System.out.println("3");
+                    deleteHouseInfo();
                     break;
                 case 4:
                     System.out.println("4");
@@ -29,7 +29,7 @@ public class HouseView {
                     showHouseList();
                     break;
                 case 6:
-                    System.out.println("6");
+                    System.out.println("退出系统成功");
                     loop = false;
                     break;
             }
@@ -69,6 +69,22 @@ public class HouseView {
         if (searchedHouse != null) {
             System.out.println("====================查找房屋成功====================");
             System.out.println(searchedHouse);
+        }
+    }
+
+    // 根据id删除某个房屋信息
+    public void deleteHouseInfo() {
+        System.out.println("====================删除房屋====================");
+        String deleteId = Utility.readString("请输入删除房屋id：", 10, 10, "int");
+        boolean isDeleteSuccess = houseService.deleteHouseById(deleteId);
+        if (isDeleteSuccess) {
+            System.out.println("====================删除房屋成功====================");
+            House[] houseList = houseService.getHouseList();
+            for (int i = 0; i < houseList.length; i++) {
+                System.out.println(houseList[i]);
+            }
+        } else {
+            System.out.println("====================未找到房屋id删除失败====================");
         }
     }
 

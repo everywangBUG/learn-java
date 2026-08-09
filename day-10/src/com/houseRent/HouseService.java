@@ -1,5 +1,7 @@
 package com.houseRent;
 
+import java.util.Arrays;
+
 /**
  * 返回所有的房屋信息
  */
@@ -15,6 +17,7 @@ public class HouseService {
     public void setHouseList(int num) {
         houseList = new House[num];
         houseList[0] = new House(1, "张三", "123", "海淀", "500", "未出租");
+        houseList[1] = new House(2, "李四", "123456", "静安", "800", "未出租");
     }
 
     public boolean addHouseList(House house) {
@@ -38,7 +41,31 @@ public class HouseService {
         }
         return null;
     }
-    
+
+    public boolean deleteHouseById(String deleteId) {
+        int findIndex = -1;
+        for (int i = 0; i < houseList.length; i++) {
+            if (deleteId.equals(String.valueOf(houseList[i].getId()))) {
+                findIndex = i;
+            }
+        }
+        if (findIndex == -1) {
+            return false;
+        }
+        System.out.println("id" + findIndex);
+        int l = houseList.length - 1;
+        House[] newHouseList = new House[l];
+        for (int i = 0, j = 0; i < newHouseList.length; i++, j++) {
+            if (findIndex == i) {
+                newHouseList[findIndex] = houseList[++i];
+            } else {
+                newHouseList[j] = houseList[j];
+            }
+        }
+        houseList = newHouseList;
+        return true;
+    }
+
     public House[] getHouseList() {
         return houseList;
     }
