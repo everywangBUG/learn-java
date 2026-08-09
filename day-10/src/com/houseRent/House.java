@@ -29,20 +29,40 @@ public class House {
         return address;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getHouseMaster() {
         return houseMaster;
+    }
+
+    public void setHouseMaster(String houseMaster) {
+        this.houseMaster = houseMaster;
     }
 
     public String getMonthlyRent() {
         return monthlyRent;
     }
 
+    public void setMonthlyRent(String monthlyRent) {
+        this.monthlyRent = monthlyRent;
+    }
+
     public String getPhone() {
         return phone;
     }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

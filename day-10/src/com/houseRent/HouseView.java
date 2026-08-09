@@ -7,11 +7,11 @@ public class HouseView {
     private char key; //用户输入字符
     private HouseService houseService = new HouseService(10);
     public void initMenu() {
+        houseService.setHouseList(2);
         do {
             this.initInterface();
             Scanner sc = new Scanner(System.in);
             int key = sc.nextInt();
-            houseService.setHouseList(2);
             switch(key) {
                 case 1:
                     addHouse();
@@ -23,13 +23,14 @@ public class HouseView {
                     deleteHouseInfo();
                     break;
                 case 4:
-                    System.out.println("4");
+                    updateHouseInfo();
                     break;
                 case 5:
                     showHouseList();
                     break;
                 case 6:
-                    System.out.println("退出系统成功");
+                    Utility.readConfirmSelection("请输入Y或者N");
+                    System.out.println("您已退出系统~");
                     loop = false;
                     break;
             }
@@ -64,7 +65,7 @@ public class HouseView {
     public void searchHouseInfo() {
         System.out.println("====================查找房屋====================");
 
-        String searchId = Utility.readString("请输入查询id：", 10, 10, "int");
+        int searchId = Utility.readInt("请输入查询id：");
         House searchedHouse = houseService.searchHouseById(searchId);
         if (searchedHouse != null) {
             System.out.println("====================查找房屋成功====================");
@@ -75,7 +76,7 @@ public class HouseView {
     // 根据id删除某个房屋信息
     public void deleteHouseInfo() {
         System.out.println("====================删除房屋====================");
-        String deleteId = Utility.readString("请输入删除房屋id：", 10, 10, "int");
+        int deleteId = Utility.readInt("请输入删除房屋id：");
         boolean isDeleteSuccess = houseService.deleteHouseById(deleteId);
         if (isDeleteSuccess) {
             System.out.println("====================删除房屋成功====================");
@@ -88,12 +89,42 @@ public class HouseView {
         }
     }
 
+    public void updateHouseInfo() {
+        System.out.println("====================修改房屋信息====================");
+        int houseId = Utility.readInt("请输入房屋编号id(-1表示退出)");
+        if (houseId == -1) {
+            System.out.println("输入的房屋编号不存在");
+        }
+        House house = houseService.searchHouseById(houseId);
+        String name = Utility.readString("请输入业主姓名：" + "(" + house.getHouseMaster() + ")", "");
+        if (!"".equals(name)) {
+            house.setHouseMaster(name);
+        }
+        String phone = Utility.readString("请输入业主电话：" + "(" + house.getPhone() + ")", "");
+        if (!"".equals(phone)) {
+            house.setPhone(phone);
+        }
+        String address = Utility.readString("请输入地址：" + "(" + house.getAddress() + ")", "");
+        if (!"".equals(address)) {
+            house.setAddress(address);
+        }
+        String monthlyRent = Utility.readString("请输入月租：" + "(" + house.getMonthlyRent() + ")", "");
+        if (!"".equals(monthlyRent)) {
+            house.setMonthlyRent(monthlyRent);
+        }
+        String status = Utility.readString("请输入状态：" + "(" + house.getStatus() + ")", "");
+        if (!"".equals(status)) {
+            house.setStatus(status);
+        }
+        System.out.println("====================修改房屋信息成功====================");
+    }
+
     public void addHouse() {
-        String name = Utility.readString("请输入姓名",1, 10, "string");
-        String phone = Utility.readString("请输入电话",1, 11, "string");
-        String address = Utility.readString("请输入地址",1, 100, "string");
-        String rent = Utility.readString("请输入月租",1, 100, "string");
-        String status = Utility.readString("请输入状态",1, 3, "string");
+        String name = Utility.readString("请输入姓名");
+        String phone = Utility.readString("请输入电话");
+        String address = Utility.readString("请输入地址");
+        String rent = Utility.readString("请输入月租");
+        String status = Utility.readString("请输入状态");
         House house = new House(1, name, phone, address, rent, status);
         boolean isAddSuccess = houseService.addHouseList(house);
         System.out.println(isAddSuccess ? "====================添加房屋成功====================" : "====================添加房屋失败====================");

@@ -33,26 +33,25 @@ public class HouseService {
         return true;
     }
 
-    public House searchHouseById(String id) {
+    public House searchHouseById(int id) {
         for (int i = 0; i < houseList.length; i++) {
-            if (id.equals(String.valueOf(houseList[i].getId()))) {
+            if (id == houseList[i].getId()) {
                 return houseList[i];
             }
         }
         return null;
     }
 
-    public boolean deleteHouseById(String deleteId) {
+    public boolean deleteHouseById(int deleteId) {
         int findIndex = -1;
         for (int i = 0; i < houseList.length; i++) {
-            if (deleteId.equals(String.valueOf(houseList[i].getId()))) {
+            if (deleteId == houseList[i].getId()) {
                 findIndex = i;
             }
         }
         if (findIndex == -1) {
             return false;
         }
-        System.out.println("id" + findIndex);
         int l = houseList.length - 1;
         House[] newHouseList = new House[l];
         for (int i = 0, j = 0; i < newHouseList.length; i++, j++) {
