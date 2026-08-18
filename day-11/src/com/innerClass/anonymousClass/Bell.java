@@ -1,4 +1,4 @@
-package com.innerClass.anonymous;
+package com.innerClass.anonymousClass;
 
 public interface Bell {
     void ring();
@@ -13,7 +13,7 @@ class CellPhone {
 }
 
 // 使用匿名内部类
-class Anonymous {
+class AnonymousClass {
     public static void main(String[] args) {
         Bell bell1 = new Bell() {
             @Override
