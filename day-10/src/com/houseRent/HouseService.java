@@ -16,8 +16,8 @@ public class HouseService {
 
     public void setHouseList(int num) {
         houseList = new House[num];
-        houseList[0] = new House(1, "张三", "123", "海淀", "500", "未出租");
-        houseList[1] = new House(2, "李四", "123456", "静安", "800", "未出租");
+//        houseList[0] = new House(1, "张三", "123", "海淀", "500", "未出租");
+//        houseList[1] = new House(2, "李四", "123456", "静安", "800", "未出租");
     }
 
     public boolean addHouseList(House house) {
