@@ -4,7 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userService" class="com.itranswarp.learnjava.service.UserService">
+    <!-- H2 嵌入式内存数据库，应用关闭后数据自动清空 -->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="jdbcUrl" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1" />
+        <property name="username" value="sa" />
+        <property name="password" value="" />
+    </bean>
+
+    <bean id="userService" class="com.itranswarp.learnjava.service.UserService" init-method="init">
+        <property name="dataSource" ref="dataSource" />
         <property name="mailService" ref="mailService" />
     </bean>
 
