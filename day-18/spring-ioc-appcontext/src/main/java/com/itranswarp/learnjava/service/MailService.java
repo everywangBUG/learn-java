@@ -1,9 +1,12 @@
 package com.itranswarp.learnjava.service;
 
+import org.springframework.stereotype.Component;
+
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Component
 public class MailService {
     private ZoneId zonId = ZoneId.systemDefault();
 

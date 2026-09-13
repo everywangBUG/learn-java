@@ -1,5 +1,10 @@
 package com.itranswarp.learnjava.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import jakarta.annotation.PostConstruct;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,21 +13,17 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
+@Component
 public class UserService {
+    @Autowired
     private MailService mailService;
+    @Autowired
     private DataSource dataSource;
 
-    public void setMailService(MailService mailService) {
-        this.mailService = mailService;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
     /**
-     * Bean 初始化时建表并写入示例用户（application.xml 中通过 init-method 调用）。
+     * Bean 初始化时建表并写入示例用户（@PostConstruct 由容器自动调用）。
      */
+    @PostConstruct
     public void init() throws SQLException {
         try (Connection conn = dataSource.getConnection()) {
             try (Statement stmt = conn.createStatement()) {
